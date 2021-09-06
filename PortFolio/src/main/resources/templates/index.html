@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{PAGES/template}"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+
+<link rel="stylesheet" href="../CSS/tags.css">
+</head>
+
+<body>
+
+
+	<main id="main" layout:fragment="content">
+
+		<!-- ======= About Section ======= -->
+		<section id="about" class="about section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>About</h2>
+					<h3>
+						Find Out More <span>About Us</span>
+					</h3>
+					<p>Exhibit offers you a free portfolios creation service</p>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-6" data-aos="zoom-out" data-aos-delay="100">
+						<img src="IMG/about.jpg" class="img-fluid" alt="">
+					</div>
+					<div
+						class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center"
+						data-aos="fade-up" data-aos-delay="100">
+						<h3>Exhibit is an innovative startup that started in 2010</h3>
+
+						<ul>
+							<li><i class="bx bx-store-alt"></i>
+								<div>
+									<h5>We have an excellent, passionate and competent team</h5>
+									<p>Design , Development , Creation , Video Editing ...</p>
+								</div></li>
+							<li><i class="bx bx-images"></i>
+								<div>
+									<h5>Portfolio creation</h5>
+									<p>Feed your portfolio with your experience, your training
+										and let everyone explore you</p>
+								</div></li>
+						</ul>
+						<p>
+							To be a professional you have to act like one as well .. <i>Alcurtis
+								Turner</i>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- End About Section -->
+
+
+
+		<!-- ======= Portfolio Section ======= -->
+		<section id="portfolio" class="portfolio">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title" style="margin-bottom: 80px;">
+					<h2 style="margin-bottom: 30px;">Portfolio</h2>
+					<h3>
+						Check our <span>Portfolios</span>
+					</h3>
+				</div>
+
+
+				<div class="row justify-content-center" data-aos="fade-up" data-aos-delay="100"
+					style="margin-bottom: 40px;">
+					<div class="col-lg-12 d-flex justify-content-center">
+						<ul id="portfolio-flters" th:each=" domaine : ${domaines}"
+							class="tag">
+							<li th:data-filter="'.'+${domaine.titre_domaine}"
+								th:text="${domaine.titre_domaine}" class="tag"
+								style="padding-top: 3px;">domaine</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="row portfolio-container" data-aos="fade-up"
+					data-aos-delay="200">
+
+					<div th:each=" user : ${portfolios}"
+						class="col-lg-4 col-md-6 portfolio-item "
+						th:classappend="${user.category}">
+						<img th:src="@{${'../IMG/users/'+user.imageUser}}"
+							class="img-fluid img-thumbnail" alt="user">
+						<div class="portfolio-info">
+							<h4 th:text="${user.firstName + ' ' + user.lastName}">Full
+								Name</h4>
+							<p th:text="${user.jobUser}">Job</p>
+							<a
+								th:href="@{/portfolio/showUsersPortfolio(username = ${user.userName})}"
+								class="details-link" title="For More Details click here"><i
+								class="bx bx-link"></i></a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Portfolio Section -->
+
+
+
+		<!-- ======= Counts Section ======= -->
+		<section id="counts" class="counts ">
+			<div class="container" data-aos="fade-up">
+
+				<div class="row justify-content-center">
+
+					<div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
+						<div class="count-box">
+							<i class="icofont-users-alt-5"></i> <span
+								data-toggle="counter-up" th:text="${numberOfMembers}">15</span>
+							<p>Members</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Counts Section -->
+
+		<!-- ======= Clients Section ======= -->
+		<section id="clients" class="clients section-bg">
+			<div class="container" data-aos="zoom-in">
+
+				<div class="row justify-content-center">
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="IMG/clients/facebook.png" class="img-fluid" alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="IMG/clients/google.png" class="img-fluid" alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="IMG/clients/LinkedIn.png" class="img-fluid" alt="">
+					</div>
+
+					<div
+						class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+						<img src="IMG/clients/microsoft.png" class="img-fluid" alt="">
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Clients Section -->
+
+		<!-- ======= Services Section ======= -->
+		<section id="services" class="services">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Services</h2>
+					<h3>
+						Check our <span>Service</span>
+					</h3>
+					<p>Quickly start building your personal portfolio</p>
+				</div>
+
+				<div class="row">
+
+					<div class="col-lg-4 col-md-6 d-flex align-items-stretch"
+						data-aos="zoom-in" data-aos-delay="100">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bxl-dribbble"></i>
+							</div>
+							<h4>
+								<a href="">Create Account</a>
+							</h4>
+							<p>Register and create an account in order to create your
+								portfolio</p>
+						</div>
+					</div>
+
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0"
+						data-aos="zoom-in" data-aos-delay="200">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-file"></i>
+							</div>
+							<h4>
+								<a href="">Create Portfolio</a>
+							</h4>
+							<p>add your internships , skills , project , personal
+								experiences ...</p>
+						</div>
+					</div>
+
+					<div
+						class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0"
+						data-aos="zoom-in" data-aos-delay="300">
+						<div class="icon-box">
+							<div class="icon">
+								<i class="bx bx-tachometer"></i>
+							</div>
+							<h4>
+								<a href="">Display your portfolio</a>
+							</h4>
+							<p>Display yours and browse or explore other portfolios</p>
+						</div>
+					</div>
+
+
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Services Section -->
+
+
+		<!-- ======= Team Section ======= -->
+		<section id="team" class="team section-bg">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Team</h2>
+					<h3>
+						Our Hardworking <span>Team</span>
+					</h3>
+					<p>
+						"It takes two flints to make a fire." <i>Louisa May Alcott</i>
+					</p>
+				</div>
+
+				<div class="row justify-content-center">
+
+					<div class="col-lg-4 col-md-6 d-flex align-items-stretch"
+						data-aos="fade-up" data-aos-delay="100">
+						<div class="member">
+							<div class="member-img">
+								<img src="IMG/team/hamza.jpg" class="img-fluid"
+									alt="teamMember1">
+							</div>
+							<div class="member-info">
+								<h4>Dabaghi Hamza</h4>
+								<span>Software Engineering Student</span>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="col-lg-4 col-md-6 d-flex align-items-stretch"
+						data-aos="fade-up" data-aos-delay="200">
+						<div class="member">
+							<div class="member-img">
+								<img src="IMG/team/kaouthar.jpg" class="img-fluid"
+									alt="teamMember2">
+
+							</div>
+							<div class="member-info">
+								<h4>Mssiaidi kawthar</h4>
+								<span>Software Engineering Student</span>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Team Section -->
+
+		<!-- ======= Contact Section ======= -->
+		<section id="contact" class="contact">
+			<div class="container" data-aos="fade-up">
+
+				<div class="section-title">
+					<h2>Contact</h2>
+					<h3>
+						<span>Contact Us</span>
+					</h3>
+					<p>We keep in touch</p>
+				</div>
+
+				<div class="row" data-aos="fade-up" data-aos-delay="100">
+					<div class="col-lg-6">
+						<div class="info-box mb-4">
+							<i class="bx bx-map"></i>
+							<h3>Our Address</h3>
+							<p>Fez , Morocco</p>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="info-box  mb-4">
+							<i class="bx bx-envelope"></i>
+							<h3>Email Us</h3>
+							<p>contact.exhibit@gmail.com</p>
+						</div>
+					</div>
+
+					<div class="col-lg-3 col-md-6">
+						<div class="info-box  mb-4">
+							<i class="bx bx-phone-call"></i>
+							<h3>Call Us</h3>
+							<p>+212 1 23 45 67 89</p>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</section>
+		<!-- End Contact Section -->
+
+		<!-- Vendor JS Files -->
+		<script src="../vendor/jquery/jquery.min.js"></script>
+		<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+		<script src="../vendor/php-email-form/validate.js"></script>
+		<script src="../vendor/waypoints/jquery.waypoints.min.js"></script>
+		<script src="../vendor/counterup/counterup.min.js"></script>
+		<script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+		<script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+		<script src="../vendor/venobox/venobox.min.js"></script>
+		<script src="../vendor/aos/aos.js"></script>
+
+		<!-- Template Main JS File -->
+		<script src="../JS/main.js"></script>
+		<script type="text/javascript">
+			// jQuery counterUp
+			$('[data-toggle="counter-up"]').counterUp({
+				delay : 8,
+				time : 500
+			});
+		</script>
+	</main>
+	<!-- End #main -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{PAGES/template}"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio</title>
+
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"
+	type="text/javascript"></script>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"
+	type="text/javascript"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+
+
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js">
+<link rel="jquery"
+	href="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.1/jquery.validate.js">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/CSS/form2.css">
+<link rel="stylesheet" href="/CSS/theme.css">
+</head>
+
+<body>
+
+
+
+
+	<main id="main" layout:fragment="content">
+		<!-- Modal -info -->
+		<div class="container">
+			<div id="modal-3" class="modal" data-modal-effect="slide-top">
+				<div class="modal-content">
+					<h2 class="fs-title">Exibit</h2>
+					<h3 class="fs-subtitle">creating your portfolio</h3>
+					<p>Please fill in all the fields with corrects
+						informations,finally you can choose your portfolio's template.</p>
+					<input type="button" name="next"
+						class="next action-button modal-close" value="Got it!">
+				</div>
+			</div>
+		</div>
+
+		<form class="steps" accept-charset="UTF-8"
+			enctype="multipart/form-data" novalidate="" method="post"
+			th:action="@{/portfolio/create}">
+
+			<input type="hidden" th:value="*{authenticatedUser.id}"
+				name="id_user">
+
+			<ul id="progressbar">
+				<li class="active">Trainings</li>
+				<li>Certificates</li>
+				<li>Projects</li>
+				<li>Category</li>
+				<li>Theme</li>
+			</ul>
+
+			<!-- USER INFORMATION FIELD SET -->
+			<fieldset>
+				<h2 class="fs-title">Trainings</h2>
+				<h3 class="fs-subtitle">You need to add your training's
+					informations</h3>
+				<!-- Begin What's Your First Name Field -->
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Training
+						Title *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="titre_formation0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your Training Tiltle"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<!-- End What's Your First Name Field -->
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="id">Training Location *</label> <input id="id"
+						name="lieu_formation0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your Training Location">
+					<span class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="input2">Start date *</label> <input id="input2"
+						name="date_debut_formation0" required="required" type="date"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your Start Date"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="l">End date *</label> <input id="l"
+						name="date_fin_formation0" required="required" type="date"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your End Dtae"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="k">Training Description *</label> <input id="k"
+						name="description_formation0" required="required" type="text"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your Training Description">
+					<span class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+
+				<div class="input_fields_wrap">
+					<!-- Dynamic Fields go here -->
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-primary add_field_button">
+						<i class="fa fa-plus"></i> Add More
+					</button>
+				</div>
+
+
+
+
+
+
+				<!-- End Total Number of Constituents in Your Database Field -->
+				<input type="button" data-page="1" name="next"
+					class="next action-button" value="Next" />
+			
+			</fieldset>
+
+
+
+
+
+			<!-- ACQUISITION FIELD SET -->
+			<fieldset>
+				<h2 class="fs-title">Certificates</h2>
+				<h3 class="fs-subtitle">Add your Certificates</h3>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Certificate
+						Title *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="titre_certificat0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Certificate
+						Organization *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="organisation_certificat0" required="required" type="text"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Starting
+						Date *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="date_debut_certificat0" required="required" type="date"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Expiration date *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="date_expiration_certificat0" required="required" type="date"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Code
+						Certificate *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="code_certificat0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Certificate
+						Description *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="Description_certificat0" required="required" type="text"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="input_fields_wrap2">
+					<!-- Dynamic Fields go here -->
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-primary add_field_button2">
+						<i class="fa fa-plus"></i> Add More
+					</button>
+				</div>
+
+				<input type="button" data-page="2" name="previous"
+					class="previous action-button" value="Previous" /> <input
+					type="button" data-page="2" name="next" class="next action-button"
+					value="Next" />
+				
+
+			</fieldset>
+
+
+
+
+
+
+			<!-- Cultivation FIELD SET -->
+			<fieldset>
+				<h2 class="fs-title">Projects</h2>
+				<h3 class="fs-subtitle">Add your projects</h3>
+
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Project
+						Title *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="titre_projet0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Project
+						url *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="liens_projet0" required="required" type="text" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Starting
+						Date *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="date_debut0" required="required" type="date" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Expiration
+						Date *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="date_fin0" required="required" type="date" value=""
+						placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Project
+						Description *</label> <input
+						id="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983"
+						name="description_projet0" required="required" type="text"
+						value="" placeholder="" data-rule-required="true"
+						data-msg-required="Please include your first name"> <span
+						class="error1" style="display: none;"> <i
+						class="error-log fa fa-exclamation-triangle"></i>
+					</span>
+				</div>
+				
+
+				<div class="input_fields_wrap3">
+					<!-- Dynamic Fields go here -->
+				</div>
+				<div class="col-md-4">
+					<button class="btn btn-primary add_field_button3">
+						<i class="fa fa-plus"></i> Add More
+					</button>
+				</div>
+
+				<input type="button" data-page="3" name="previous"
+					class="previous action-button" value="Previous" /> <input
+					type="button" data-page="3" name="next" class="next action-button"
+					value="Next" />
+				
+			</fieldset>
+
+			<fieldset>
+				<h2 class="fs-title">Category</h2>
+				<h3 class="fs-subtitle">Let's know what is your portfolio
+					category</h3>
+
+
+
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="domain">Category *</label>
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<label class="input-group-text" for="inputGroupSelect01">Categories</label>
+						</div>
+						<select class="custom-select" id="inputGrpupSelect01"
+							required="required" name="domaine" data-rule-required="true"
+							data-msg-required="Please include your Category">
+
+							<option selected>Choose...</option>
+
+							<option th:each="domain : ${listeDomain}"
+								th:value="${domain.titre_domaine}"
+								th:text=${domain.titre_domaine}></option>
+
+						</select> <span class="error1" style="display: none;"><i
+							class="error-log fa fa-exclamation-triangle"></i> </span>
+					</div>
+
+
+				</div>
+
+
+
+
+
+				<input type="button" data-page="4" name="previous"
+					class="previous action-button" value="Previous" /> <input
+					type="button" data-page="4" name="next" class="next action-button"
+					value="Next" />
+				
+			</fieldset>
+
+			<fieldset th:object="${portfolio}">
+				<h2 class="fs-title">Details</h2>
+				<h3 class="fs-subtitle">Personalize your portfolio</h3>
+
+				<div class="hs_firstname field hs-form-field">
+
+					<label for="firstname-99a6d115-5e68-4355-a7d0-529207feb0b3_2983">Choose
+						theme *</label>
+
+				</div>
+
+
+				<div id="gallery" data-role="image-slider">
+					<input type="radio" name="gallery-1" checked="checked"
+						th:field="*{id_theme}" value=1 />
+					<div class="image-slider-element">
+						<img src="../IMG/them1.png" />
+					</div>
+
+
+					<input type="radio" name="gallery-1" th:field="*{id_theme}" value=2 />
+					<div class="image-slider-element">
+						<img src="../IMG/them2.png" />
+					</div>
+
+
+
+				</div>
+
+				<br>
+				<div class="input-group flex-nowrap">
+					<span class="input-group-text" id="addon-wrapping">Linkedin
+						: </span> <input type="text" class="form-control"
+						th:field="*{linkedin_profil}" placeholder="Username"
+						aria-label="Username" aria-describedby="addon-wrapping">
+				</div>
+				<div class="input-group">
+					<span class="input-group-text">Portfolio Quote</span>
+					<textarea class="form-control" aria-label="With textarea"
+						th:field="*{description_portfolio}"></textarea>
+				</div>
+				<div class="input-group flex-nowrap">
+					<span class="input-group-text" id="addon-wrapping">Phone
+						Number:</span> <input type="text" class="form-control"
+						th:field="*{num_telephone}" placeholder="Phone"
+						aria-label="Username" aria-describedby="addon-wrapping">
+				</div>
+				<input type="button" data-page="5" name="previous"
+					class="previous action-button" value="Previous" /> <input
+					id="submit" class="hs-button primary large action-button next"
+					type="submit" value="Submit">
+				
+			</fieldset>
+
+		</form>
+
+		<script src="/JS/jquery.js"></script>
+		<script src="/JS/jquery.validate.js"></script>
+		<script src="/JS/jquery.easing.js"></script>
+		<script src="/JS/form2.js"></script>
+		<script src="/JS/add2.js"></script>
+
+
+
+
+	</main>
+
+</body>
+
+</html>

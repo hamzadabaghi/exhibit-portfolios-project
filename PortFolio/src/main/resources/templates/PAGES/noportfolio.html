@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				layout:decorate="~{PAGES/template}"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Portfolio</title>
+<style>
+.centre{
+
+margin-right:20%;
+margin-left:30%;
+}
+</style>
+</head>
+<body>
+
+ <main id="main" layout:fragment="content" >
+ 
+  <div class="centre" >
+ 
+ <h1></h1>
+ 
+ <br><br>
+ 
+ 
+             <div class="card border-success mb-3">
+                 <div class="card-header">
+                    <h2> You don't have a portfolio</h2>
+                 </div>
+              <div class="card-body">
+                 <h4>Take the opportunity and create your portfolio now !!</h4>
+                 <h6>show the world your abilities:</h6>
+                 <a class="btn btn-success" th:href="@{/portfolio/add}">Create my portfolio</a>
+             </div>
+     </div>
+</div>
+
+
+
+ 		<!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../vendor/counterup/counterup.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../JS/main.js"></script>
+ </main>
+
+</body>
+</html>

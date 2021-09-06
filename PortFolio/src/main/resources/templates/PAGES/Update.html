@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				layout:decorate="~{PAGES/template}"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				>
+<head>
+<meta charset="ISO-8859-1">
+<title>Update Portfolio</title>
+<style>
+.centre{
+
+margin-right:20%;
+margin-left:30%;
+}
+</style>
+</head>
+<body>
+
+ <main id="main" layout:fragment="content" >
+ 
+ <div class="centre" weight=500px>
+ 
+ <h1>Modify your  Portfolio</h1>
+ 
+ <br><br>
+ 
+ 
+             <div class="card border-primary mb-3">
+                 <div class="card-header">
+                    <h2> Projects:</h2>
+                 </div>
+                 <div class="card-body">
+                      <div th:each="projet : ${listeProjet}">
+				
+				          <form method="post" th:action="@{/projets/update}" >
+				              <input  type="hidden" name="id" th:value="${projet.id_projet}">
+				              <input  type="hidden" name="idportfolio" th:value="${projet.id_portfolio}">
+				             <div class="row">
+                               <div class="col">
+                               <label for="formGroupExampleInput" class="form-label">Project Title</label>
+                                <input class="form-control" type="text" name="titre" th:value="${projet.titre_projet}" required>   
+                              </div>
+                              <div class="col">
+                              <label for="formGroupExampleInput" class="form-label">Project URL:</label>
+                                  <input class="form-control" type="text" name="liens_projet" th:value="${projet.liens_projet}" >
+                              </div>
+                             </div>
+				                  
+			               	      
+				                  
+				                  <div class="mb-3">
+				                  <label for="formGroupExampleInput" class="form-label">Project Description</label>
+				                  <input class="form-control" type="text" name="description_projet" th:value="${projet.description_projet}" required>
+				                  </div>
+				                  <div class="mb-3">
+				                  <label for="formGroupExampleInput" class="form-label">Start Date</label>
+				                  <input class="form-control" type="date" name="date_debut" th:value="${{projet.date_debut}}" required>
+				                  </div>
+				                  <div class="mb-3">
+				                  <label for="formGroupExampleInput" class="form-label">End Date</label>
+				                  <input class="form-control" type="date" name="date_fin" th:value="${{projet.date_fin}}" required>
+				                  </div>
+				                  <input  type="submit" class="btn btn-success" value="Submit" >
+				                  <a class="btn btn-danger" th:href="@{'/projets/delete'+ ${projet.id_projet}}"><i class="icofont-trash" aria-hidden="true"></i></a>
+				          </form>
+				 
+				          
+				          <div class="card-footer text-muted">
+                          </div>
+			          </div>
+			          
+                 </div>
+             </div>
+
+			
+		
+		
+		 <div class="card border-success mb-3">
+                 <div class="card-header">
+                    <h2> Certificates:</h2>
+                 </div>
+                 <div class="card-body">    
+		<div th:each="certificat : ${listeCertificat}">
+	
+	 			
+				<form method="post" th:action="@{/certificats/update}" >
+				
+				    <input  type="hidden" name="idcert" th:value="${certificat.id_certificat}" >
+				    <input  type="hidden" name="idportfolio" th:value="${certificat.id_portfolio}" >
+				      <div class="row">
+                               <div class="col">
+                               <label for="formGroupExampleInput" class="form-label">Certificate Title</label>
+				    <input class="form-control" type="text" name="titre_cert" th:value="${certificat.titre_certificat}" required>
+				    </div>
+                              <div class="col">
+                              <label for="formGroupExampleInput" class="form-label">Certificate organization:</label>
+				    <input class="form-control" type="text" name="organisation" th:value="${certificat.organisation_certificat}" required>
+				    </div>
+				    </div>
+				    
+				    <div class="mb-3">
+				         <label for="formGroupExampleInput" class="form-label">Certificate description </label>
+				            <input class="form-control" type="text" name="description_certificat" th:value="${certificat.Description_certificat}" required>      
+				    </div>              
+				     <div class="mb-3">             
+				     <label for="formGroupExampleInput" class="form-label">Start Date</label>
+				    <input class="form-control" type="date" name="date_debut_cert" th:value="${{certificat.date_debut_certificat}}" required>
+				     </div>
+				     <div class="mb-3">
+				     <label for="formGroupExampleInput" class="form-label"> Date of expiration</label>
+				      <input class="form-control" type="date" name="date_fin_cert" th:value="${{certificat.date_expiration_certificat}}" required>
+				      </div>
+				      <div class="mb-3">
+				      <label for="formGroupExampleInput" class="form-label">Certificate Code</label>
+				      <input class="form-control" type="text" name="code" th:value="${certificat.code_certificat}" required>
+				    </div>
+				    <input  type="submit" class="btn btn-success" value="Submit" >
+				    <a class="btn btn-danger" th:href="@{'/certificats/delete'+ ${certificat.id_certificat}}"><i class="icofont-trash" aria-hidden="true"></i></a>
+				    </form>
+				    
+				   
+  
+		    <div class="card-footer text-muted">
+                          
+               </div>
+			          
+			       </div>   
+                 </div>
+             </div>
+		
+		
+		
+		<div class="card border-warning mb-3">
+                 <div class="card-header">
+                    <h2> Training:</h2>
+                 </div>
+                 <div class="card-body">  		    
+		<div th:each="formation : ${listeFormation}">
+	
+	 			
+				<form method="post" th:action="@{/formations/update}" >
+				
+				    <input  type="hidden" name="idform" th:value="${formation.id_formation}" >
+				    <input type="hidden" name="idportfolio" th:value="${formation.id_portfolio}" >
+				    <div class="row">
+                               <div class="col">
+                               <label for="formGroupExampleInput" class="form-label">Training Title</label>
+				    <input class="form-control" type="text" name="titre_form" th:value="${formation.titre_formation}" required>
+				    </div>
+				    
+				    
+                              <div class="col">
+                              <label for="formGroupExampleInput" class="form-label">Training adresse:</label>
+				    <input class="form-control" type="text" name="lieu" th:value="${formation.lieu_formation}" required>
+				    </div>
+				    </div>
+				      <div class="mb-3">             
+				     <label for="formGroupExampleInput" class="form-label">Training Description</label>
+				    
+				    <input class="form-control" type="text" name="description_formation" th:value="${formation.description_formation}" required>
+				    </div>
+				      <div class="mb-3">             
+				     <label for="formGroupExampleInput" class="form-label">Start Date</label>
+				    <input class="form-control" type="date" name="date_debut_form" th:value="${{formation.date_debut_formation}}" required>
+				   </div>
+				     <div class="mb-3">             
+				     <label for="formGroupExampleInput" class="form-label">End Date</label>
+				    <input class="form-control" type="date" name="date_fin_form" th:value="${{formation.date_fin_formation}}" required>
+				    
+				    </div>
+				    <input  type="submit" class="btn btn-success" value="Submit" >
+				    <a class="btn btn-danger" th:href="@{'/formations/delete'+ ${formation.id_formation}}"><i class="icofont-trash" aria-hidden="true"></i></a>
+  
+				    </form>
+				  	
+		     <div class="card-footer text-muted">
+                          </div>
+			          </div>
+			          
+                 </div>
+             </div>
+ 
+
+ 
+ </div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../vendor/counterup/counterup.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../JS/main.js"></script>
+  </main><!-- End #main -->
+ </main>
+</body>
+</html>

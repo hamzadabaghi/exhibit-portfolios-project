@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Exhibit</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../IMG/websitelogo.png" rel="icon">
+  <link href="../IMG/websitelogo.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="../vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="../vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="../vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../CSS/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <h1 class="logo mr-auto"><a  th:href="@{/index}">Exhibit<span>.</span></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo mr-auto"><img src="IMG/logo.png" alt=""></a>-->
+
+      <nav class="nav-menu d-none d-lg-block">
+        <ul>
+          <li class="active"><a th:href="@{/index}">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolios</a></li>
+          <li><a href="#counts">Statistics</a></li>
+          <li><a href="#services">Service</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <!-- hasRole('ROLE_ADMIN') && -->
+          <li><a th:href="@{/login}"  sec:authorize="!isAuthenticated()">Sign in</a></li>
+          <li><a th:href="@{/login}" sec:authorize="!isAuthenticated()">Sign up</a></li>
+          <li class="drop-down"  sec:authorize="isAuthenticated()" ><a sec:authentication="name">name-user</a>
+            <ul>
+              <li><a th:href="@{/user/profile}">Profile</a></li>
+              <li class="drop-down"><a th:href="@{/portfolio/showport}">Portfolio</a>
+              </li>
+              <li><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav><!-- .nav-menu -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container" data-aos="zoom-out" data-aos-delay="100" >
+      <h1>Welcome to <span>Exhibit</span>
+      </h1>
+      <h2>"Opportunities don't happen. You create them." - Chris Grosser</h2>
+      <div class="d-flex">
+        <a th:href="@{/login}" class="btn-get-started scrollto"  sec:authorize="!isAuthenticated()">sign in</a>
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main" layout:fragment="content" >
+     notre fichier main 
+  </main>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <h3>Exhibit<span>.</span></h3>
+            <p><strong>Address : </strong> 
+              Fez , Morocco<br><br>
+              <strong>Phone :</strong> +212 1 23 45 67 89<br><br>
+              <strong>Email :</strong> contact.exhibit@gmail.com<br>
+            </p>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Useful Links</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Home</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">About us</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Services</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Terms of service</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Privacy policy</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Services</h4>
+            <ul>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Web Design</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Web Development</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Product Management</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Marketing</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a th:href="@{/}">Graphic Design</a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <h4>Our Social Networks</h4>
+            <p>follow us  </p>
+            <div class="social-links mt-3">
+              <a th:href="@{/}" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a th:href="@{/}" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a th:href="@{/}" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a th:href="@{/}" class="google-plus"><i class="bx bxl-skype"></i></a>
+              <a th:href="@{/}" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container py-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>BizLand</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <div id="preloader"></div>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+ <script src="../JS/main.js"></script>
+
+</body>
+
+</html>

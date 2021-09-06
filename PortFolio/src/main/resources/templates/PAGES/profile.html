@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{PAGES/template}"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<link href="../CSS/profile.css" rel="stylesheet">
+</head>
+
+<body>
+
+
+	<main id="main" layout:fragment="content">
+
+		<div class="main-content" style="margin-bottom: 70px;">
+			<!-- Header  -->
+			
+			<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+				style="min-height: 1px;" th:if="${updateProfileAlert== null AND AlertCreateAccount==null}" >
+			</div>
+			
+			<!-- alert update -->
+			<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+				style="min-height: 1px;"  th:if="${updateProfileAlert}" >
+				<div class="container-fluid">
+					<div class="row  justify-content-center">
+						<div class="alert alert-success alert-dismissible ">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Your profile is updated successfully</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- alert create account -->
+			
+			<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
+				style="min-height: 1px;" th:if="${AlertCreateAccount}">
+				<div class="container-fluid" >
+					<div class="row  justify-content-center">
+						<div class="alert alert-success alert-dismissible ">
+							<button type="button" class="close" data-dismiss="alert">&times;</button>
+							<strong>Your account is created successfully , please complete your profile</strong>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- Page content -->
+			<div class="container-fluid mt--7">
+				<div class="row">
+					<div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+						<div class="card card-profile shadow">
+							<div class="row justify-content-center">
+								<div class="col-lg-3 order-lg-2">
+									<div class="card-profile-image">
+										<img
+											th:src="@{${'../IMG/users/'+profileImg}}"
+											class="rounded-circle">
+
+									</div>
+								</div>
+							</div>
+							<div
+								class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+								<div class="d-flex justify-content-between"></div>
+							</div>
+							<div class="card-body pt-0 pt-md-4">
+								<div class="row">
+									<div class="col">
+										<div
+											class="card-profile-stats d-flex justify-content-center mt-md-5">
+											<div>
+												<span class="heading" th:text="${numberOfProjects}">22</span> <span class="description">Projects</span>
+											</div>
+											<div>
+												<span class="heading" th:text="${numberOfTrainings}">10</span> <span class="description">Trainings</span>
+											</div>
+											<div>
+												<span class="heading" th:text="${numberOfCertificats}">89</span> <span class="description">Certificats</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="text-center"
+									th:if="${authenticatedUser.firstName != null && authenticatedUser.lastName !=null}">
+									<h3
+										th:text="${authenticatedUser.firstName + ' '+ authenticatedUser.lastName}">
+
+									</h3>
+
+									<div class="h5 mt-4" th:if="${authenticatedUser.job}">
+										<i class="ni business_briefcase-24 mr-2"></i>
+										<h4 th:text=${authenticatedUser.job}></h4>
+									</div>
+
+							
+
+								</div>
+								<div class="text-center" style="margin-top:20px;">
+									<!--  change picture  -->
+								
+								<form  th:action="@{/savePitureUser}" method="post"  enctype="multipart/form-data"  style="margin-top:40px;">
+									<div class="h5 mt-4">
+										<div class="form-group focused">
+											<label class="form-control-label" for="input-username">Profile
+												picture</label> <input type="file" id="myImg" name="imageProfile"
+												accept="image/png, image/jpeg"
+												class="form-control form-control-alternative ">
+										 <div class="col-7 text-right" style="margin-top:40px;">
+										 <input type="submit" value="save" class="btn btn-sm btn-primary" />
+										 </div>
+										</div>
+									</div>
+								<!-- end changing -->
+								</form>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-8 order-xl-1">
+						<div class="card bg-secondary shadow">
+							<div class="card-header bg-white border-0">
+								<div class="row align-items-center">
+									<div class="col-8">
+										<h3 class="mb-0">My account</h3>
+									</div>
+									<div class="col-4 text-right">
+										<button class="btn btn-sm btn-primary">Settings</button>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<form method="post" th:action="@{/user/update}"
+									th:object="${authenticatedUser}">
+									<h6 class="heading-small text-muted mb-4">User information</h6>
+									<div class="pl-lg-4">
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-username">Username</label>
+													<input type="text" id="input-username"
+														class="form-control form-control-alternative"
+														placeholder="Username"
+														th:value="${authenticatedUser.username}"
+														th:field="*{username}">
+												</div>
+											</div>
+
+											<div class="col-lg-6">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-username">Password</label>
+													<input type="password" id="input-username"
+														class="form-control form-control-alternative"
+														placeholder="type a new password or the old one"
+														th:value="${authenticatedUser.password}"
+														th:field="*{password}"
+														required>
+												</div>
+											</div>
+
+											<div class="col-lg-6">
+												<div class="form-group">
+													<label class="form-control-label" for="input-email">Email
+														address</label> <input type="email" id="input-email"
+														class="form-control form-control-alternative"
+														placeholder="username@example.com"
+														th:value="${authenticatedUser.email}" th:field="*{email}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-6">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-first-name">First
+														name</label> <input type="text" id="input-first-name"
+														class="form-control form-control-alternative"
+														placeholder="First name"
+														th:value="${authenticatedUser.firstName}"
+														th:field="*{firstName}">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-last-name">Last
+														name</label> <input type="text" id="input-last-name"
+														class="form-control form-control-alternative"
+														placeholder="Last name"
+														th:value="${authenticatedUser.lastName}"
+														th:field="*{lastName}">
+												</div>
+											</div>
+											<div class="col-lg-6">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-last-name">Job</label>
+													<input type="text" id="input-last-name"
+														class="form-control form-control-alternative"
+														placeholder="Job" th:value="${authenticatedUser.job}"
+														th:field="*{job}">
+												</div>
+											</div>
+										</div>
+									</div>
+									<hr class="my-4">
+									<!-- Address -->
+									<h6 class="heading-small text-muted mb-4">Contact
+										information</h6>
+									<div class="pl-lg-4">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-address">Address</label>
+													<input id="input-address"
+														class="form-control form-control-alternative"
+														placeholder="Home Address" type="text"
+														th:value="${authenticatedUser.address}"
+														th:field="*{address}">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-lg-4">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-city">City</label>
+													<input type="text" id="input-city"
+														class="form-control form-control-alternative"
+														placeholder="City" th:value="${authenticatedUser.city}"
+														th:field="*{city}">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group focused">
+													<label class="form-control-label" for="input-country">Country</label>
+													<input type="text" id="input-country"
+														class="form-control form-control-alternative"
+														placeholder="Country"
+														th:value="${authenticatedUser.country}"
+														th:field="*{country}">
+												</div>
+											</div>
+											<div class="col-lg-4">
+												<div class="form-group">
+													<label class="form-control-label" for="input-country">Postal
+														code</label> <input type="text" id="input-postal-code"
+														class="form-control form-control-alternative"
+														placeholder="Postal code"
+														th:value="${authenticatedUser.postalCode}"
+														th:field="*{postalCode}">
+												</div>
+											</div>
+										</div>
+									</div>
+
+
+									<div class="d-flex flex-row-reverse" style="margin-top: 30px;">
+										<a type="button" th:href="@{/index}"
+											class=" p-2 btn btn-sm btn-primary "
+											style="margin-right: 10px;">Home</a> <input type="submit"
+											class=" p-2 btn btn-sm btn-primary "
+											style="margin-right: 10px;" value="Update">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<script>
+			window.addEventListener('load', function() {
+				document.querySelector('input[type="file"]').addEventListener(
+						'change', function() {
+							if (this.files && this.files[0]) {
+								var img = document.querySelector('img');
+
+								img.src = URL.createObjectURL(this.files[0]);
+
+							}
+						});
+			});
+		</script>
+
+ <!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../vendor/counterup/counterup.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../JS/main.js"></script>
+	</main>
+	<!-- End #main -->
+
+
+</body>
+
+</html>

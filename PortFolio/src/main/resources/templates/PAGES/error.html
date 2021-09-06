@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+				 layout:decorate="~{PAGES/template}"
+				 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+				 >
+				 <head>
+				   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
+				   <link rel="stylesheet" href="../CSS/error.css" />
+				 </head>
+
+<body>
+
+  
+  <main id="main" layout:fragment="content" >
+  
+ 		
+
+
+<div class="container error-container">
+	<div class="row  d-flex align-items-center justify-content-center">
+		<div class="col-md-12 text-center">
+			<h1 class="big-text">Oops!</h1>
+			<h2 class="small-text">404 - PAGE NOT FOUND</h2>
+
+		</div>
+		<div class="col-md-6  text-center">
+			<p>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</p>
+			
+			<a href="# " class="button button-dark-blue iq-mt-15 text-center" th:href="@{/index}">GOTO HOME PAGE</a>
+
+		</div>
+
+	</div>
+
+
+</div>
+
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		
+ 		<!-- Vendor JS Files -->
+  <script src="../vendor/jquery/jquery.min.js"></script>
+  <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="../vendor/php-email-form/validate.js"></script>
+  <script src="../vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="../vendor/counterup/counterup.min.js"></script>
+  <script src="../vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="../vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../vendor/venobox/venobox.min.js"></script>
+  <script src="../vendor/aos/aos.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../JS/main.js"></script>
+  
+  </main>
+  <!-- End #main -->
+
+
+</body>
+
+</html>
